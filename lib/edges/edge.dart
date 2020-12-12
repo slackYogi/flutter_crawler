@@ -1,3 +1,0 @@
-class Edge {
-  int id;
-}

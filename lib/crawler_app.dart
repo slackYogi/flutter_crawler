@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_crawler/current_location.dart';
+import 'package:flutter_crawler/services/map_service.dart';
+import 'package:get_it/get_it.dart';
 
 class CrawlerApp extends StatelessWidget {
   @override
@@ -23,13 +26,9 @@ class CrawlerHome extends StatefulWidget {
 }
 
 class _CrawlerHomeState extends State<CrawlerHome> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  //TODO research GetIt
+  //final locations = GetIt.I.get<MapService>();
+  CurrentLocation _currentLocation;
 
   @override
   Widget build(BuildContext context) {
@@ -39,22 +38,34 @@ class _CrawlerHomeState extends State<CrawlerHome> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: ElevatedButton(onPressed: null, child: null),
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(onPressed: null, child: null),
+                  Center(child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text(_currentLocation?.description ?? 'area description'),
+                  )),
+                  ElevatedButton(onPressed: null, child: null),
+                ],
+              ),
             ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: ElevatedButton(onPressed: null, child: null),
+              ),
+            )
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
