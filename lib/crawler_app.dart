@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crawler/current_location.dart';
+import 'package:flutter_crawler/services/map_service.dart';
+import 'package:get_it/get_it.dart';
 
 class CrawlerApp extends StatelessWidget {
   @override
