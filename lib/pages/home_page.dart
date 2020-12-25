@@ -21,18 +21,14 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 240, 0, 0),
               child: ElevatedButton(
-                  onPressed: () => {
-                    Navigator.pushReplacementNamed(context, '/location')
-                  },
+                  onPressed: () => {Navigator.pushReplacementNamed(context, '/location')},
                   child: Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Text(
-                      'Start game',
-                      style: TextStyle(
-                        fontSize: 30,
-                        letterSpacing: 2,
-                      )
-                    ),
+                    child: Text('Start game',
+                        style: TextStyle(
+                          fontSize: 30,
+                          letterSpacing: 2,
+                        )),
                   )),
             ),
           ],

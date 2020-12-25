@@ -4,4 +4,6 @@ class Location {
   int id;
   String description;
   Map<Direction, int> exits = Map();
+
+  Location(this.id, this.description, this.exits);
 }
