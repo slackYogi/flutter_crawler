@@ -1,9 +1,9 @@
 import 'dart:collection';
 
-import '../location.dart';
+import 'package:flutter_crawler/location.dart';
 
 class MapService {
-  var locations = HashMap<int, Location>();
+  final locations = HashMap<int, Location>();
 
   // this should override state of stateful widget
   //@override
