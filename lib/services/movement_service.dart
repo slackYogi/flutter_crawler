@@ -14,35 +14,12 @@ class MovementService {
     cameFrom = Direction.south;
   }
 
-  bool canGoWest() {
-    return position.exits.containsKey(Direction.west);
+  bool canGo(Direction direction) {
+    return position.exits.containsKey(direction);
   }
 
-  bool canGoNorth() {
-    return position.exits.containsKey(Direction.north);
-  }
-
-  bool canGoEast() {
-    return position.exits.containsKey(Direction.east);
-  }
-
-  bool canGoSouth() {
-    return position.exits.containsKey(Direction.south);
-  }
-
-  void goWest() {
-    position = _mapService.locations[position.exits[Direction.west]];
-  }
-
-  void goNorth() {
-    position = _mapService.locations[position.exits[Direction.north]];
-  }
-
-  void goEast() {
-    position = _mapService.locations[position.exits[Direction.east]];
-  }
-
-  void goSouth() {
-    position = _mapService.locations[position.exits[Direction.south]];
+  void go(Direction direction) {
+    position = _mapService.locations[position.exits[direction]];
+    cameFrom = oppositeDirection(direction);
   }
 }

@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_crawler/enums/direction.dart';
 import 'package:flutter_crawler/services/movement_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -26,51 +28,56 @@ class _LocationPageState extends State<LocationPage> {
           ElevatedButton(
               onPressed: () => {
                     setState(() {
-                      if (_movementService.canGoWest()) {
-                        _movementService.goWest();
+                      if (_movementService.canGo(Direction.west)) {
+                        _movementService.go(Direction.west);
                       }
                     })
                   },
-              child: _movementService.canGoWest() ? Text('go west') : null),
+              //TODO modify buttons text so it corresponds with dircetion you came from
+              child: _movementService.canGo(Direction.west) ? Text('go\nwest') : null),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                   onPressed: () => {
                         setState(() {
-                          if (_movementService.canGoNorth()) {
-                            _movementService.goNorth();
+                          if (_movementService.canGo(Direction.north)) {
+                            _movementService.go(Direction.north);
                           }
                         })
                       },
-                  child: _movementService.canGoNorth() ? Text('go north') : null),
+                  child: _movementService.canGo(Direction.north) ? Text('go\nnorth') : null),
               Center(
                   child: Padding(
                 padding: const EdgeInsets.all(24),
-                child: Text(_movementService.position?.description ?? 'Error loading location data.'),
+                child: Text(_locationDescription() ?? 'Error loading location data.'),
               )),
               ElevatedButton(
                   onPressed: () => {
                         setState(() {
-                          if (_movementService.canGoSouth()) {
-                            _movementService.goSouth();
+                          if (_movementService.canGo(Direction.south)) {
+                            _movementService.go(Direction.south);
                           }
                         })
                       },
-                  child: _movementService.canGoSouth() ? Text('go south') : null),
+                  child: _movementService.canGo(Direction.south) ? Text('go\nsouth') : null),
             ],
           ),
           ElevatedButton(
               onPressed: () => {
                     setState(() {
-                      if (_movementService.canGoEast()) {
-                        _movementService.goEast();
+                      if (_movementService.canGo(Direction.east)) {
+                        _movementService.go(Direction.east);
                       }
                     })
                   },
-              child: _movementService.canGoEast() ? Text('go east') : null),
+              child: _movementService.canGo(Direction.east) ? Text('go\neast') : null),
         ],
       ),
     );
+  }
+
+  String _locationDescription() {
+    return 'You came from ${describeEnum(_movementService.cameFrom)}.\n${_movementService.position?.description}';
   }
 }
