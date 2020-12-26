@@ -2,7 +2,7 @@ import 'package:flutter_crawler/enums/direction.dart';
 import 'package:flutter_crawler/models/location.dart';
 
 class MapService {
-  Location position;
+  Location initialPosition;
 
   final Map<int, Location> locations = {
     0: Location(0, 'location 0', {Direction.west: 1}),
@@ -29,38 +29,6 @@ class MapService {
   };
 
   MapService() {
-    this.position = locations[0];
-  }
-
-  bool canGoWest() {
-    return position.exits.containsKey(Direction.west);
-  }
-
-  bool canGoNorth() {
-    return position.exits.containsKey(Direction.north);
-  }
-
-  bool canGoEast() {
-    return position.exits.containsKey(Direction.east);
-  }
-
-  bool canGoSouth() {
-    return position.exits.containsKey(Direction.south);
-  }
-
-  int goWest() {
-    position = locations[position.exits[Direction.west]];
-  }
-
-  int goNorth() {
-    position = locations[position.exits[Direction.north]];
-  }
-
-  int goEast() {
-    position = locations[position.exits[Direction.east]];
-  }
-
-  int goSouth() {
-    position = locations[position.exits[Direction.south]];
+    this.initialPosition = locations[0];
   }
 }

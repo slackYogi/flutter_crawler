@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_crawler/services/map_service.dart';
+import 'package:flutter_crawler/services/movement_service.dart';
 import 'package:get_it/get_it.dart';
 
 class LocationPage extends StatefulWidget {
@@ -8,12 +8,12 @@ class LocationPage extends StatefulWidget {
 }
 
 class _LocationPageState extends State<LocationPage> {
-  MapService _mapService;
+  MovementService _movementService;
 
   @override
   void initState() {
     super.initState();
-    _mapService = GetIt.I.get<MapService>();
+    _movementService = GetIt.I.get<MovementService>();
   }
 
   @override
@@ -26,49 +26,49 @@ class _LocationPageState extends State<LocationPage> {
           ElevatedButton(
               onPressed: () => {
                     setState(() {
-                      if (_mapService.canGoWest()) {
-                        _mapService.goWest();
+                      if (_movementService.canGoWest()) {
+                        _movementService.goWest();
                       }
                     })
                   },
-              child: _mapService.canGoWest() ? Text('go west') : null),
+              child: _movementService.canGoWest() ? Text('go west') : null),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
                   onPressed: () => {
                         setState(() {
-                          if (_mapService.canGoNorth()) {
-                            _mapService.goNorth();
+                          if (_movementService.canGoNorth()) {
+                            _movementService.goNorth();
                           }
                         })
                       },
-                  child: _mapService.canGoNorth() ? Text('go north') : null),
+                  child: _movementService.canGoNorth() ? Text('go north') : null),
               Center(
                   child: Padding(
                 padding: const EdgeInsets.all(24),
-                child: Text(_mapService.position?.description ?? 'Error loading location data.'),
+                child: Text(_movementService.position?.description ?? 'Error loading location data.'),
               )),
               ElevatedButton(
                   onPressed: () => {
                         setState(() {
-                          if (_mapService.canGoSouth()) {
-                            _mapService.goSouth();
+                          if (_movementService.canGoSouth()) {
+                            _movementService.goSouth();
                           }
                         })
                       },
-                  child: _mapService.canGoSouth() ? Text('go south') : null),
+                  child: _movementService.canGoSouth() ? Text('go south') : null),
             ],
           ),
           ElevatedButton(
               onPressed: () => {
                     setState(() {
-                      if (_mapService.canGoEast()) {
-                        _mapService.goEast();
+                      if (_movementService.canGoEast()) {
+                        _movementService.goEast();
                       }
                     })
                   },
-              child: _mapService.canGoEast() ? Text('go east') : null),
+              child: _movementService.canGoEast() ? Text('go east') : null),
         ],
       ),
     );
