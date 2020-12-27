@@ -3,6 +3,7 @@ import 'package:flutter_crawler/models/location.dart';
 
 class MapService {
   Location initialPosition;
+  Location position;
 
   final Map<int, Location> locations = {
     0: Location(0, 'location 0', {Direction.west: 1}),
@@ -30,5 +31,10 @@ class MapService {
 
   MapService() {
     this.initialPosition = locations[0];
+    this.position = initialPosition;
+  }
+
+  String getPositionDescription() {
+    return position?.description ?? 'Error loading description.';
   }
 }

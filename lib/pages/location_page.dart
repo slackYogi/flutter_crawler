@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_crawler/enums/direction.dart';
+import 'package:flutter_crawler/services/map_service.dart';
 import 'package:flutter_crawler/services/movement_service.dart';
 import 'package:get_it/get_it.dart';
 
@@ -11,10 +11,12 @@ class LocationPage extends StatefulWidget {
 
 class _LocationPageState extends State<LocationPage> {
   MovementService _movementService;
+  MapService _mapService;
 
   @override
   void initState() {
     super.initState();
+    _mapService = GetIt.I.get<MapService>();
     _movementService = GetIt.I.get<MovementService>();
   }
 
@@ -78,6 +80,6 @@ class _LocationPageState extends State<LocationPage> {
   }
 
   String _locationDescription() {
-    return 'You came from ${describeEnum(_movementService.cameFrom)}.\n${_movementService.position?.description}';
+    return 'You came from ${_movementService.cameFromDisplay()}.\n${_mapService.getPositionDescription()}';
   }
 }
